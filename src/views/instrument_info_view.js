@@ -14,13 +14,26 @@ InstrumentInfoView.prototype.bindEvents = function(){
 };
 
 InstrumentInfoView.prototype.display = function(instrument){
-
-  
-
-  const displayText = document.createElement('p');
-  displayText.textContent = instrument.description;
   this.container.innerHTML = '';
-  this.container.appendChild(displayText);
+
+  const headerNode = document.createElement('h1');
+  headerNode.textContent = instrument.name;
+  this.container.appendChild(headerNode);
+
+  const descriptionText = document.createElement('p');
+  descriptionText.textContent = instrument.description;
+  this.container.appendChild(descriptionText);
+
+  const examplesHeader = document.createElement('h2');
+  examplesHeader.textContent = "Examples Include:";
+  this.container.appendChild(examplesHeader);
+
+
+  for (var example of instrument.instruments){
+    const examplesList = document.createElement('li');
+    examplesList.textContent = example;
+    this.container.appendChild(examplesList);
+  }
 
 
   //IMPORTANT: instead of trying to remove text content, we wipe everything clean, because in between the div tags, there can be other tags like p's or anything... by assigning innerHTML an empty string it wipes everything clean
